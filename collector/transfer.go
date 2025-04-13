@@ -76,7 +76,8 @@ func (c *TransferCollector) Collect(ch chan<- prometheus.Metric) {
 
 		// Values are already in bytes from the API
 		usedBytes := float64(transfer.Used)
-		quotaBytes := float64(transfer.Quota)
+		// Convert quota from GB to bytes
+		quotaBytes := float64(transfer.Quota * 1024 * 1024 * 1024)
 		billableBytes := float64(transfer.Billable)
 
 		ch <- prometheus.MustNewConstMetric(
