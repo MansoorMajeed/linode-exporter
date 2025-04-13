@@ -74,6 +74,7 @@ func main() {
 	registry.MustRegister(collector.NewTicketCollector(client))
 	registry.MustRegister(collector.NewVolumeCollector(client))
 	registry.MustRegister(collector.NewObjectStorageCollector(client))
+	registry.MustRegister(collector.NewTransferCollector(client))
 
 	mux := http.NewServeMux()
 	mux.Handle("/", http.HandlerFunc(rootHandler))
